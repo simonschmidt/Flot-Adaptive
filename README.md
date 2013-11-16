@@ -20,6 +20,8 @@ $.plot("#placeholder",
 
 ### Options
 
+| Option          | Description|
+|-----------------|:---------|
 | f               | function |
 | range           | `[xmin, xmax]` |
 | initialPoints   | Number of (equidistant) points to start with, default `25` |
