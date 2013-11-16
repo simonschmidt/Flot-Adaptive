@@ -20,16 +20,16 @@ $.plot("#placeholder",
 
 ### Options
 
-| Option          | Description|
-|-----------------|:---------|
-| f               | function |
-| range           | `[xmin, xmax]` |
-| initialPoints   | Number of (equidistant) points to start with, default `25` |
-| extraPoints     | [x0, x1, ...] extra points to include |
-| maxRecursion    | Default `3` |
-| maxAngle        | Maximum angle between adjacent points, default `0.01` |
-| minStep         | Minimum step-size relative to x-axis width, default `1/1000` |
-| minStepAbsolute | Minimum absolute step-size, overides minStep |
-| debug           | Default `false` |
+| Option          | Description| Default |
+|-----------------|:-----------|---------|
+| f               | Function to plot |  Required |
+| range           | `[xmin, xmax]` range to plot it in  | Required |
+| initialPoints   | Number of (equidistant) points to start with| 25 |
+| extraPoints     | [x0, x1, ...] extra points to include | null |
+| maxRecursion    | | 3 |
+| maxAngle        | Maximum angle between adjacent points | 0.01 |
+| minStep         | Minimum step-size relative to x-axis width | 1/1000 |
+| minStepAbsolute | Minimum absolute step-size, overides minStep | |
+| debug           | | false |
 
 
