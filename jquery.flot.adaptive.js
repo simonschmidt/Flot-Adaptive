@@ -142,13 +142,13 @@
 			if( !s.adaptive && !(data.hasOwnProperty('adaptive') && data.adaptive) ){
 				return;
 			}
-			var opts;
-			if( s.adaptive ){
-				opts = s.adaptive;
-			}else{
-				opts = data.adaptive;
+			if( !s.adaptive){
+				for( key in data)
+					s[key]=jQuery.extend(s[key], data[key]);
+				s.data = [];
 			}
-
+			window.spoints=s.points;
+			var opts = s.adaptive;
 			if( !opts.range || !opts.f){
 				console.error("[Flot.adaptive] Missing arguments f and range are required.");
 				return;
