@@ -147,8 +147,9 @@
 					s[key]=jQuery.extend(s[key], data[key]);
 				s.data = [];
 			}
-			window.spoints=s.points;
+
 			var opts = s.adaptive;
+			
 			if( !opts.range || !opts.f){
 				console.error("[Flot.adaptive] Missing arguments f and range are required.");
 				return;
