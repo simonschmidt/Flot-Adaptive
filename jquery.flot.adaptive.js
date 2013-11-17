@@ -72,8 +72,8 @@
 				range: [0, 1],
 				initialPoints: 25,
 				extraPoints: null,
-				maxRecursion: 3,
-				maxAngle: .01,
+				maxRecursion: 5,
+				maxAngle: .1,
 				minStep: 0.001,
 				minStepAbsolute: null,
 				debug: false}, opts);
@@ -207,5 +207,5 @@
 		name: 'adaptive',
 		version: '0.1'
 	});
-	
+
 })(jQuery);
