@@ -22,7 +22,7 @@
 							// Options for adaptive
 							f: [oscillating, fastGrowing],
 							range: [[0, 15], [0, 35]],
-			                maxAngle: [0.01, 0.05, 0.1, 0.5],
+							maxAngle: [0.01, 0.05, 0.1, 0.5],
 							maxRecursion: [0, 1, 2, 5, 10],
 							minStep: [0.0001, 0.001, 0.01, 0.1, 1],
 
@@ -62,7 +62,7 @@
 					yopts.transform =  function(x){return Math.log(x+1);};
 					yopts.inverseTransform = function(x){return Math.exp(x)-1;};
 				}
-				
+
 				$.plot("#placeholder", 
 					[{	
 						data: [], // Does nothing, implementation limitation
