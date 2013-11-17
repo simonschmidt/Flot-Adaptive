@@ -10,7 +10,7 @@ Automatically samples a function in desired range
 To plot `someFunction` between 0 and 10:
 ```javascript
 $.plot("#placeholder", 
-  { 
+  [{ 
     adaptive: {f: someFunction, range: [0, 10]}
   }]);
 ```
