@@ -137,10 +137,17 @@
 		}
 
 		function processAdaptive(plot, s, data, datapoints){
-			if(!s.adaptive)
+			// Strange things happen when no data: [...]  is given
+			// the data argument here becomes all the options, so try to recover
+			if( !s.adaptive && !(data.hasOwnProperty('adaptive') && data.adaptive) ){
 				return;
-
-			var opts = s.adaptive;
+			}
+			var opts;
+			if( s.adaptive ){
+				opts = s.adaptive;
+			}else{
+				opts = data.adaptive;
+			}
 
 			if( !opts.range || !opts.f){
 				console.error("[Flot.adaptive] Missing arguments f and range are required.");
@@ -148,7 +155,7 @@
 			}
 
 			// TODO if data is non-empty append to extraPoints
-			if( s.data.length != 0){
+			if( s.adaptive &&  s.data.length != 0){
 				console.log("[Flot.adaptive] Provided data discarded,",
 							"put the x-values in the extraPoints option instead");
 			}

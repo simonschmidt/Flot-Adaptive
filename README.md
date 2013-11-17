@@ -11,12 +11,9 @@ To plot `someFunction` between 0 and 10:
 ```javascript
 $.plot("#placeholder", 
   { 
-    data: [], 
     adaptive: {f: someFunction, range: [0, 10]}
   }]);
 ```
-
-`data: []` has to be included for now, it is ignored.
 
 ### Options
 
