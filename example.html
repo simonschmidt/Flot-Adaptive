@@ -4,8 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Flot-adaptive example</title>
-	<script language="javascript" type="text/javascript" src="http://www.flotcharts.org/flot/jquery.js"></script>
-	<script language="javascript" type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.min.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.flot.min.js"></script>
 	<script language="javascript" type="text/javascript" src="jquery.flot.adaptive.js"></script>
 	<script type="text/javascript">
 		var choiceContainer;
@@ -65,6 +65,7 @@
 
 				$.plot("#placeholder", 
 					[{	
+						data: opts.f,
 						adaptive: opts
 					}],
 					{

@@ -137,32 +137,24 @@
 		}
 
 		function processAdaptive(plot, s, data, datapoints){
-			// Strange things happen when no data: [...]  is given
-			// the data argument here becomes all the options, so try to recover
-			if( !s.adaptive && !(data.hasOwnProperty('adaptive') && data.adaptive) ){
+			if( !s.adaptive )
 				return;
-			}
-			if( !s.adaptive){
-				for( key in data)
-					s[key]=jQuery.extend(s[key], data[key]);
-				s.data = [];
-			}
 
 			var opts = s.adaptive;
-			
-			if( !opts.range || !opts.f){
-				console.error("[Flot.adaptive] Missing arguments f and range are required.");
+
+			if( !opts.range ){
+				console.error("[Flot.adaptive] Missing required property (range).");
 				return;
 			}
 
-			// TODO if data is non-empty append to extraPoints
-			if( s.adaptive &&  s.data.length != 0){
-				console.log("[Flot.adaptive] Provided data discarded,",
-							"put the x-values in the extraPoints option instead");
+			if( !(data instanceof Function) ){
+				console.error("[Flot.adaptive] data must be a Function");
+				return;
 			}
 
-			var plotopts = plot.getOptions();
+			opts.f = data;
 
+			var plotopts = plot.getOptions();
 			var transformY = plotopts.yaxis.transform && plotopts.yaxis.inverseTransform;
 			var transformX = plotopts.xaxis.transform && plotopts.xaxis.inverseTransform;
 
@@ -185,9 +177,9 @@
 					return oldf(plotopts.xaxis.transform(x));
 				}
 
-				if(opts.extraPoints){
+				if(opts.extraPoints)
 					opts.extraPoints = opts.extraPoints.map(plotopts.xaxis.transform);
-				}
+				
 				opts.range = opts.range.map(plotopts.xaxis.transform);
 
 			}

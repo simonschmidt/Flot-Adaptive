@@ -11,7 +11,8 @@ To plot `someFunction` between 0 and 10:
 ```javascript
 $.plot("#placeholder", 
   [{ 
-    adaptive: {f: someFunction, range: [0, 10]}
+    data: someFunction,
+    adaptive: { range: [0, 10] }
   }]);
 ```
 
@@ -19,7 +20,6 @@ $.plot("#placeholder",
 
 | Option          | Description| Default |
 |-----------------|:-----------|---------|
-| f               | Function to plot |  Required |
 | range           | `[xmin, xmax]` range to plot it in  | Required |
 | initialPoints   | Number of (equidistant) points to start with| 25 |
 | extraPoints     | [x0, x1, ...] extra points to include | null |
