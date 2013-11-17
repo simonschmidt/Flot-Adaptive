@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- Based on http://www.flotcharts.org/flot/examples/series-toggle/index.html but without the pretty-->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot-adaptive example</title>
+	<script language="javascript" type="text/javascript" src="http://www.flotcharts.org/flot/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.flot.adaptive.js"></script>
+	<script type="text/javascript">
+		var choiceContainer;
+		$(function(){
+			function oscillating(x){
+				return Math.cos(x)*Math.sin(x)*Math.sin(x) + Math.cos(Math.PI * Math.sin(x))+2;
+			}
+
+			function fastGrowing(x){
+				return Math.exp(x*Math.cos(x))*Math.pow(Math.sin(x),2);
+			}
+
+			var choices = { 
+							// Options for adaptive
+							f: [oscillating, fastGrowing],
+							range: [[0, 15], [0, 35]],
+			                maxAngle: [0.01, 0.05, 0.1, 0.5],
+							maxRecursion: [0, 1, 2, 5, 10],
+							minStep: [0.0001, 0.001, 0.01, 0.1, 1],
+
+							// Options for yaxis
+							logScale: [false, true],
+							// Options for points
+							showPoints: [true, false]};
+
+			var opts={f: oscillating, range: [0, 15]};
+			var logScale = false;
+			var showPoints = true;
+
+			choiceContainer = $("#choices");
+			var txt='';
+			for(key in choices){
+				txt += '<br/><label>'+key+'</label><select>';
+				for( opt in choices[key]){
+					txt+="<option name='"+key+"' value='"+opt+"'>"+choices[key][opt]+"</option>";
+				}
+				txt+='</select>';
+			}
+			choiceContainer.append(txt);
+
+			choiceContainer.find('select').change(updatePlot);
+
+			function updatePlot(){
+
+				choiceContainer.find('select').children(':selected').each(function(i,x){
+					var optName;
+					optName=x.getAttribute('name');
+					optPos = x.getAttribute('value');
+					opts[optName] = choices[optName][optPos];
+				});
+
+				var yopts = {};
+				if(opts.logScale){
+					yopts.transform =  function(x){return Math.log(x+1);};
+					yopts.inverseTransform = function(x){return Math.exp(x)-1;};
+				}
+				
+				$.plot("#placeholder", 
+					[{	
+						data: [], // Does nothing, implementation limitation
+						adaptive: opts,
+					}],
+					{
+						lines: {show: true},
+						points: {show: opts.showPoints},
+						yaxis: yopts
+					});
+			}
+
+			updatePlot();
+		});
+	</script>
+</head>
+
+<div id="placeholder" style="width: 600px; height: 300px; float: left"></div>
+<p id="choices" style="float:right; width: 200px;"></p>
+</html>
