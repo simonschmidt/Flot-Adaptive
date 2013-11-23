@@ -5,6 +5,8 @@ Adaptive sampling plugin for [Flot](https://github.com/flot/flot)
 
 Automatically samples a function in desired range
 
+![Animation](http://simonschmidt.github.io/Flot-Adaptive/images/recursions.gif)
+
 ##Usage
 
 To plot `someFunction` between 0 and 10:
