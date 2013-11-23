@@ -74,9 +74,12 @@
 				extraPoints: null,
 				maxRecursion: 5,
 				maxAngle: .1,
+				maxTime: false,
 				minStep: 0.001,
 				minStepAbsolute: null,
 				debug: false}, opts);
+
+			var startTime = Date.now()/1000;
 
 			var xmin = opts.range[0], xmax = opts.range[1];
 			var minstep = (xmax - xmin)*opts.minStep;
@@ -93,6 +96,11 @@
 			var y = x.map(opts.f);
 
 			for(var rec = 0; rec < opts.maxRecursion; rec++){
+				if( opts.maxTime && Date.now()/1000 - startTime > opts.maxTime ){
+					if( opts.debug )
+						console.log('Timed out before recursion ',rec);
+					break;
+				}
 				// Calculate change in angles
 				var dangle = diff(angles(x, y)).map(Math.abs);
 				if( opts.debug ){

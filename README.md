@@ -25,6 +25,7 @@ $.plot("#placeholder",
 | extraPoints     | [x0, x1, ...] extra points to include | null |
 | maxRecursion    | | 5 |
 | maxAngle        | Maximum angle between adjacent points (in radians ofc) | 0.1 |
+| maxTime         | Maximum time in seconds spent refining, initialPoints and extraPoints are always calculated | |
 | minStep         | Minimum step-size relative to x-axis width | 1/1000 |
 | minStepAbsolute | Minimum absolute step-size, overides minStep | |
 | debug           | | false |
